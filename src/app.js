@@ -14,30 +14,34 @@ import Restaurant from "./components/resaurant/Restaurant";
 const Groceries = lazy(() => import("./components/groceries/Groceries"));
 
 const AppLayout = () => {
-    return (
-        <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="app">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
-        <Routes>
-            <Route element={<AppLayout />} >
-                <Route index element={<Body />} />
-                <Route path="about" element={<About />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="restaurant/:resId" element={<Restaurant />} />
-                <Route path="groceries" element={<Suspense fallback={<div>Loading...</div>}><Groceries /></Suspense>} />
-
-                <Route path="*" element={<Error />} errorElement />
-
-            </Route>
-        </Routes>
-    </BrowserRouter>
+  <BrowserRouter>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<Body />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="restaurant/:resId" element={<Restaurant />} />
+        <Route
+          path="groceries"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Groceries />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<Error />} errorElement />
+      </Route>
+    </Routes>
+  </BrowserRouter>,
 );
