@@ -36,12 +36,11 @@ const Body = () => {
     }
     return (
         <div className="body">
-            <div className="search">
-                <input type="text" onChange={handleSearch} />
-                <button onClick={() => handleFilter()}>Top Rated RestaurantsS</button>
+            <div className="search p-8 text-center">
+                <input type="text" placeholder="Search Restaurants " onChange={handleSearch} className="p-2 m-t-4 m-b-4 mr-auto ml-auto border rounded-sm w-[50%]" />
             </div>
-            <div className="res-container">
-                {loading ? "Shimmeeeeeeeeerrrrrrrrrrrr" : <div className="card-conatiner">
+            <div className="res-container ">
+                {loading ? "Shimmeeeeeeeeerrrrrrrrrrrr" : <div className="card-conatiner flex flex-wrap justify-left pl-2 pr-2 gap-4">
                     {filteredData?.length > 0
                         ? filteredData.map((item) => (
                             <RestaurantCard data={item} key={item.info.id} />
