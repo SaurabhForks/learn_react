@@ -8,6 +8,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import Contact from "./components/contact/contact";
 import Error from "./components/error/Error";
 import Restaurant from "./components/resaurant/Restaurant";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Cart from "./components/cart/Cart";
 // import Groceries from "./components/groceries/Groceries";
 
 // const element = React.createElement("div", { id: "parent" }, React.createElement("div", { id: "child" }, [React.createElement("h1", {}, "I am h1"), React.createElement("h2", {}, "I am h2")]));
@@ -25,23 +28,27 @@ const AppLayout = () => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route element={<AppLayout />}>
-        <Route index element={<Body />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="restaurant/:resId" element={<Restaurant />} />
-        <Route
-          path="groceries"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <Groceries />
-            </Suspense>
-          }
-        />
-        <Route path="*" element={<Error />} errorElement />
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<Body />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="restaurant/:resId" element={<Restaurant />} />
+          <Route
+            path="groceries"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Groceries />
+              </Suspense>
+            }
+          />
+          <Route path="cart" element={<Cart />} />
+
+          <Route path="*" element={<Error />} errorElement />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
 );

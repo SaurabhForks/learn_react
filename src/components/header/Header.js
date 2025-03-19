@@ -1,30 +1,42 @@
 import { Link } from "react-router";
 import { LOGO } from "../../utils/urls";
+import { FaCartPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-    return (
-        <div className="header flex justify-between p-5 shadow bg-white sticky-top">
-            <div className="logo w-20">
-                {LOGO}
-            </div>
-            <ul className="nav flex justify-between p-4">
-                <li className="nav-item pr-5">
-                    <Link to="/" className="nav-link">Home</Link>
-                </li>
-                <li className="nav-item pr-5">
-                    <Link to="/about" className="nav-link">About</Link>
-                </li>
-                <li className="nav-item pr-5">
-                    <Link to="/contact" className="nav-link">Contact</Link>
-                </li>
-                <li className="nav-item pr-5">
-                    <Link to="/groceries" className="nav-link">Groceries</Link>
-                </li>
-                <li className="nav-item pr-5">
-                    <Link to="/login" className="nav-link">Cart</Link>
-                </li>
-            </ul>
-        </div>
-    );
+  const cartItem = useSelector((store) => store.cartReducer.items);
+
+  return (
+    <div className="header flex justify-between p-5 shadow bg-white sticky-top">
+      <div className="logo w-20">{LOGO}</div>
+      <ul className="nav flex justify-between p-4">
+        <li className="nav-item pr-5">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+        <li className="nav-item pr-5">
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+        </li>
+        <li className="nav-item pr-5">
+          <Link to="/contact" className="nav-link">
+            Contact
+          </Link>
+        </li>
+        <li className="nav-item pr-5">
+          <Link to="/groceries" className="nav-link">
+            Groceries
+          </Link>
+        </li>
+        <li className="nav-item pr-5">
+          <Link to="/cart" className="nav-link flex items-center">
+            <FaCartPlus className="mr-1" /> {cartItem.length}
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
 };
 export default Header;
