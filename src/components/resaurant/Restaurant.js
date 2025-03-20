@@ -6,13 +6,13 @@ import Accordian from "../accordian/Accordian";
 const Restaurant = () => {
   const [resData, setResData] = useState([]);
   const [option, setOption] = useState([]);
+  const [isOpen, setIsOpen] = useState(0);
   const { resId } = useParams();
   const { data, loading, error } = useFetchData(`${RESTAURANT_URL}${resId}`);
 
   useEffect(() => {
     setResData(data?.data?.cards[2]?.card?.card?.info);
     setOption(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-    console.log(option);
   }, [data]);
 
   return loading ? (
@@ -32,7 +32,15 @@ const Restaurant = () => {
               cardData?.card?.card?.title &&
               cardData?.card?.card?.itemCards?.length > 0
             ) {
-              return <Accordian key={index} data={cardData} />;
+              return (
+                <Accordian
+                  key={index}
+                  data={cardData}
+                  isOpen={isOpen === index ? true : false}
+                  index={index}
+                  setIsOpen={setIsOpen}
+                />
+              );
             }
           })}
       </div>

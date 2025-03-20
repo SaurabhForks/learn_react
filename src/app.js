@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/header/Header";
 import Body from "./components/body/Body";
@@ -11,17 +11,27 @@ import Restaurant from "./components/resaurant/Restaurant";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Cart from "./components/cart/Cart";
+import UserContext from "./context/UserContext";
+import Login from "./components/login/Login";
 // import Groceries from "./components/groceries/Groceries";
 
 // const element = React.createElement("div", { id: "parent" }, React.createElement("div", { id: "child" }, [React.createElement("h1", {}, "I am h1"), React.createElement("h2", {}, "I am h2")]));
 const Groceries = lazy(() => import("./components/groceries/Groceries"));
 
 const AppLayout = () => {
+  const [userDetail, setUserDetail] = useState({
+    name: "Saurabh",
+    password: "",
+  });
   return (
     <div className="app">
-      <Header />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider
+        value={{ loggedInUser: userDetail.name, setUserDetail }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </div>
   );
 };
@@ -48,6 +58,7 @@ root.render(
 
           <Route path="*" element={<Error />} errorElement />
         </Route>
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </Provider>,
