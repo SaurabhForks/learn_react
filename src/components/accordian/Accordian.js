@@ -14,7 +14,7 @@ const Accordian = ({ data, isOpen, index, setIsOpen }) => {
       </div>
       {isOpen && (
         <>
-          {itemCards?.map((item, index) => {
+          {itemCards?.map((item) => {
             return <ItemDetail key={item?.card?.info?.id} detail={item} />;
           })}
         </>

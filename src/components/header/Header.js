@@ -2,10 +2,12 @@ import { Link } from "react-router";
 import { LOGO } from "../../utils/urls";
 import { FaCartPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 
 const Header = () => {
   const cartItem = useSelector((store) => store.cartReducer.items);
-
+  const { loggedInUser } = useContext(UserContext);
   return (
     <div className="header flex justify-between p-5 shadow bg-white sticky-top">
       <div className="logo w-20">{LOGO}</div>
@@ -35,6 +37,8 @@ const Header = () => {
             <FaCartPlus className="mr-1" /> {cartItem.length}
           </Link>
         </li>
+
+        <li className="nav-item pr-5"> USER: {loggedInUser}</li>
       </ul>
     </div>
   );

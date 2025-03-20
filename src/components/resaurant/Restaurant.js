@@ -38,7 +38,7 @@ const Restaurant = () => {
                   data={cardData}
                   isOpen={isOpen === index ? true : false}
                   index={index}
-                  setIsOpen={() => setIsOpen()}
+                  setIsOpen={setIsOpen}
                 />
               );
             }
