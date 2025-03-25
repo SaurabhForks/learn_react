@@ -1,1 +1,5 @@
 @import "tailwindcss";
+.realtive svg {
+  width: 96px !important;
+  height: 96px;
+}
