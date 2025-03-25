@@ -58,7 +58,7 @@ const Body = () => {
           <div className="card-conatiner flex flex-wrap justify-left pl-2 pr-2 gap-4">
             {filteredData?.length > 0
               ? filteredData.map((item) => (
-                  <RestaurantCard data={item} key={item.info.id} />
+                  <RestaurantCard data={item.info} key={item.info.id} />
                 ))
               : ""}
           </div>

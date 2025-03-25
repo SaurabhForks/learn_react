@@ -5,6 +5,7 @@ import {
 } from "../../redux/slices/cartSilce";
 import { FaApple, FaEgg } from "react-icons/fa";
 import { IMAGE_BASE_URL } from "../../utils/urls";
+import { LOGO } from "../../utils/urls";
 
 const ItemDetail = ({ detail, isCart = false }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ const ItemDetail = ({ detail, isCart = false }) => {
       <div className="relative">
         {imageId ? (
           <img src={IMAGE_BASE_URL + imageId} alt="" className="w-24 h-24" />
-        ) : null}
+        ) : (
+          LOGO
+        )}
         {!isCart ? (
           <button
             className="absolute bottom-0 left-2 bg-green-800 text-sm p-1 rounded-sm text-white cursor-pointer"

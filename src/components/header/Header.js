@@ -34,11 +34,16 @@ const Header = () => {
         </li>
         <li className="nav-item pr-5">
           <Link to="/cart" className="nav-link flex items-center">
-            <FaCartPlus className="mr-1" /> {cartItem.length}
+            <FaCartPlus className="mr-1 cart-icon" role="cart_icon" />{" "}
+            {cartItem.length}
           </Link>
         </li>
 
-        <li className="nav-item pr-5"> USER: {loggedInUser}</li>
+        <li className="nav-item pr-5">
+          {" "}
+          <span>USER:</span>
+          {loggedInUser}
+        </li>
       </ul>
     </div>
   );
